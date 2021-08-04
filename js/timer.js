@@ -30,14 +30,10 @@ class CountdownTimer {
   }
 
   updateTimerFace(selector, { days, hours, mins, secs }) {
-    if (!document.querySelector('.timer').hasAttribute('id')) {
-      document.querySelector('.timer').setAttribute('id', selector);
-    }
-
-    document.querySelector('[data-value="days"]').textContent = days;
-    document.querySelector('[data-value="hours"]').textContent = hours;
-    document.querySelector('[data-value="mins"]').textContent = mins;
-    document.querySelector('[data-value="secs"]').textContent = secs;
+    document.querySelector(`${selector} [data-value="days"]`).textContent = days;
+    document.querySelector(`${selector} [data-value="hours"]`).textContent = hours;
+    document.querySelector(`${selector} [data-value="mins"]`).textContent = mins;
+    document.querySelector(`${selector} [data-value="secs"]`).textContent = secs;
   }
 }
 
@@ -45,3 +41,10 @@ new CountdownTimer({
   selector: '#timer-1',
   targetDate: new Date('Aug 31, 2021'),
 });
+
+setTimeout(() => {
+  new CountdownTimer({
+    selector: '#timer-2',
+    targetDate: new Date('Dec 31, 2021'),
+  });
+}, 2000);
